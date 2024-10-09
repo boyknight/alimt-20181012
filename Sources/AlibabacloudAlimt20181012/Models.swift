@@ -157,7 +157,13 @@ public class CreateAsyncTranslateResponseBody : Tea.TeaModel {
 
     public override func fromMap(_ dict: [String: Any]) -> Void {
         if dict.keys.contains("Code") {
-            self.code = dict["Code"] as! Int32
+            if let c = dict["Code"] as? Int32 {
+                self.code = c
+            }else{
+                if let cs = dict["Code"] as? String, let cv = Int32(cs) {
+                    self.code = cv
+                }
+            }
         }
         if dict.keys.contains("Data") {
             var model = CreateAsyncTranslateResponseBody.Data()
