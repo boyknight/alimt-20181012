@@ -4151,7 +4151,15 @@ public class TranslateGeneralResponseBody : Tea.TeaModel {
 
     public override func fromMap(_ dict: [String: Any]) -> Void {
         if dict.keys.contains("Code") {
-            self.code = dict["Code"] as! Int32
+            if let c = dict["Code"] as? Int32 {
+                self.code = c
+            }else{
+                if let cs = dict["Code"] as? String, let cv = Int32(cs) {
+                    self.code = cv
+                }else{
+                    self.code = nil
+                }
+            }
         }
         if dict.keys.contains("Data") {
             var model = TranslateGeneralResponseBody.Data()
