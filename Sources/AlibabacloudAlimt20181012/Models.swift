@@ -162,6 +162,8 @@ public class CreateAsyncTranslateResponseBody : Tea.TeaModel {
             }else{
                 if let cs = dict["Code"] as? String, let cv = Int32(cs) {
                     self.code = cv
+                }else{
+                    self.code = nil
                 }
             }
         }
